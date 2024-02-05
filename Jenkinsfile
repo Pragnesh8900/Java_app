@@ -7,7 +7,7 @@ pipeline{
     tools{
         jfrog 'jfrog-cli'
     }
-    
+
     parameters{
 
         choice(name: 'action', choices: 'create\ndelete', description: 'Choose create/Destroy')
@@ -79,7 +79,7 @@ pipeline{
         stage('Jfrog Artifactory Upload'){
          when { expression {  params.action == 'create' } }
             steps{
-                jf rf u target/kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar my-repo/
+                jf 'rf u target/kubernetes-configmap-reload-0.0.1-SNAPSHOT.jar my-repo/'
             }
         }
         stage('Docker Image Build'){
